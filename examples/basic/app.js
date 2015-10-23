@@ -88,7 +88,7 @@ const App = React.createClass({
           >
             <a tabIndex={0}
                 role="button"
-                aria-haspopup={true}
+                aria-haspopup
                 data-type="foo"
                 onKeyPress={this.handleNavKeyPress}
                 onClick={this.handleNavClick}>Foo</a>
@@ -98,7 +98,7 @@ const App = React.createClass({
           >
             <a tabIndex={0}
                 role="button"
-                aria-haspopup={true}
+                aria-haspopup
                 data-type="bar"
                 onKeyPress={this.handleNavKeyPress}
                 onClick={this.handleNavClick}>Bar</a>
@@ -108,7 +108,7 @@ const App = React.createClass({
           >
             <a tabIndex={0}
                 role="button"
-                aria-haspopup={true}
+                aria-haspopup
                 data-type="baz"
                 onKeyPress={this.handleNavKeyPress}
                 onClick={this.handleNavClick}>Baz</a>
