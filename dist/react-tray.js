@@ -90,13 +90,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  propTypes: {
 	    isOpen: _react2['default'].PropTypes.bool,
 	    onBlur: _react2['default'].PropTypes.func,
-	    closeTimeoutMS: _react2['default'].PropTypes.number
+	    closeTimeoutMS: _react2['default'].PropTypes.number,
+	    closeOnBlur: _react2['default'].PropTypes.bool
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      isOpen: false,
-	      closeTimeoutMS: 0
+	      closeTimeoutMS: 0,
+	      closeOnBlur: true
 	    };
 	  },
 	
@@ -218,6 +220,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    overlayClassName: _react.PropTypes.string,
 	    isOpen: _react.PropTypes.bool,
 	    onBlur: _react.PropTypes.func,
+	    closeOnBlur: _react.PropTypes.bool,
 	    closeTimeoutMS: _react.PropTypes.number,
 	    children: _react.PropTypes.any
 	  },
@@ -272,8 +275,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.props.onBlur();
 	    }
 	
-	    // Treat tabbing away from content as blur/close
-	    if (e.keyCode === 9 && (0, _helpersIsLeavingNode2['default'])(this.refs.content, e)) {
+	    // Treat tabbing away from content as blur/close if closeOnBlur
+	    if (e.keyCode === 9 && this.props.closeOnBlur && (0, _helpersIsLeavingNode2['default'])(this.refs.content, e)) {
 	      e.preventDefault();
 	      this.props.onBlur();
 	    }
