@@ -91,14 +91,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    isOpen: _react2['default'].PropTypes.bool,
 	    onBlur: _react2['default'].PropTypes.func,
 	    closeTimeoutMS: _react2['default'].PropTypes.number,
-	    closeOnBlur: _react2['default'].PropTypes.bool
+	    closeOnBlur: _react2['default'].PropTypes.bool,
+	    maintainFocus: _react2['default'].PropTypes.bool
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      isOpen: false,
 	      closeTimeoutMS: 0,
-	      closeOnBlur: true
+	      closeOnBlur: true,
+	      maintainFocus: false
 	    };
 	  },
 	
@@ -170,6 +172,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _helpersIsLeavingNode2 = _interopRequireDefault(_helpersIsLeavingNode);
 	
+	var _helpersTabbable = __webpack_require__(8);
+	
+	var _helpersTabbable2 = _interopRequireDefault(_helpersTabbable);
+	
 	var styles = {
 	  overlay: {
 	    position: 'fixed',
@@ -222,7 +228,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onBlur: _react.PropTypes.func,
 	    closeOnBlur: _react.PropTypes.bool,
 	    closeTimeoutMS: _react.PropTypes.number,
-	    children: _react.PropTypes.any
+	    children: _react.PropTypes.any,
+	    maintainFocus: _react.PropTypes.bool
 	  },
 	
 	  getInitialState: function getInitialState() {
@@ -273,6 +280,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Treat ESC as blur/close
 	    if (e.keyCode === 27) {
 	      this.props.onBlur();
+	    }
+	
+	    // Keep focus inside the tray if maintainFocus is true
+	    if (e.keyCode === 9 && this.props.maintainFocus && (0, _helpersIsLeavingNode2['default'])(this.refs.content, e)) {
+	      e.preventDefault();
+	      var tabbable = (0, _helpersTabbable2['default'])(this.refs.content);
+	      var target = tabbable[e.shiftKey ? tabbable.length - 1 : 0];
+	      target.focus();
+	      return;
 	    }
 	
 	    // Treat tabbing away from content as blur/close if closeOnBlur
@@ -362,8 +378,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2015 Jed Watson.
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
 	  Licensed under the MIT License (MIT), see
 	  http://jedwatson.github.io/classnames
 	*/
@@ -375,7 +391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		var hasOwn = {}.hasOwnProperty;
 	
 		function classNames () {
-			var classes = '';
+			var classes = [];
 	
 			for (var i = 0; i < arguments.length; i++) {
 				var arg = arguments[i];
@@ -384,28 +400,28 @@ return /******/ (function(modules) { // webpackBootstrap
 				var argType = typeof arg;
 	
 				if (argType === 'string' || argType === 'number') {
-					classes += ' ' + arg;
+					classes.push(arg);
 				} else if (Array.isArray(arg)) {
-					classes += ' ' + classNames.apply(null, arg);
+					classes.push(classNames.apply(null, arg));
 				} else if (argType === 'object') {
 					for (var key in arg) {
 						if (hasOwn.call(arg, key) && arg[key]) {
-							classes += ' ' + key;
+							classes.push(key);
 						}
 					}
 				}
 			}
 	
-			return classes.substr(1);
+			return classes.join(' ');
 		}
 	
 		if (typeof module !== 'undefined' && module.exports) {
 			module.exports = classNames;
 		} else if (true) {
 			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
 				return classNames;
-			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else {
 			window.classNames = classNames;
 		}

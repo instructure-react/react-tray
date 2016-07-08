@@ -1,6 +1,6 @@
 {
   "name": "react-tray",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "An accessible tray component useful for navigation menus",
   "main": "lib/main.js",
   "directories": {
@@ -33,7 +33,7 @@
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
-    "rackt-cli": "^0.5.3",
+    "rackt-cli": "https://github.com/mzabriskie/rackt-cli.git#63ed6cedd71c8e725bf9578bc3cb28c6955c51b7",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
     "react-dom": "^0.14.0"
