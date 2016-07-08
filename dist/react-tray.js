@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      isOpen: false,
 	      closeTimeoutMS: 0,
 	      closeOnBlur: true,
-	      maintainFocus: false
+	      maintainFocus: true
 	    };
 	  },
 	

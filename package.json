@@ -1,6 +1,6 @@
 {
   "name": "react-tray",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An accessible tray component useful for navigation menus",
   "main": "lib/main.js",
   "directories": {

@@ -1,3 +1,9 @@
+v1.0.1 - Fri, 08 Jul 2016 22:00:48 GMT
+--------------------------------------
+
+- [a374410](../../commit/a374410) [fixed] make default maintainFocus prob actually be true
+
+
 v1.0.0 - Fri, 08 Jul 2016 21:20:29 GMT
 --------------------------------------
 
