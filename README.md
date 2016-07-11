@@ -1,5 +1,7 @@
 # react-tray
 
+[![Build Status](https://travis-ci.org/instructure-react/react-tray.svg?branch=master)](https://travis-ci.org/instructure-react/react-tray)
+
 An accessible tray component useful for navigation menus
 See example at [http://instructure-react.github.io/react-tray](http://instructure-react.github.io/react-tray)
 
