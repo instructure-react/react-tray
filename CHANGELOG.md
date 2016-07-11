@@ -1,3 +1,11 @@
+v1.1.0 - Mon, 11 Jul 2016 22:24:30 GMT
+--------------------------------------
+
+- [d860b32](../../commit/d860b32) [fixed] Failing test for elementToFocus
+- [3300f2c](../../commit/3300f2c) [added] Add elementToFocus prop (#5)
+- [afe8d85](../../commit/afe8d85) [added] onOpen callback
+
+
 v1.0.1 - Fri, 08 Jul 2016 22:00:48 GMT
 --------------------------------------
 

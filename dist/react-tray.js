@@ -90,9 +90,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  propTypes: {
 	    isOpen: _react2['default'].PropTypes.bool,
 	    onBlur: _react2['default'].PropTypes.func,
+	    onOpen: _react2['default'].PropTypes.func,
 	    closeTimeoutMS: _react2['default'].PropTypes.number,
 	    closeOnBlur: _react2['default'].PropTypes.bool,
-	    maintainFocus: _react2['default'].PropTypes.bool
+	    maintainFocus: _react2['default'].PropTypes.bool,
+	    elementToFocus: _react2['default'].PropTypes.string
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
@@ -226,10 +228,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    overlayClassName: _react.PropTypes.string,
 	    isOpen: _react.PropTypes.bool,
 	    onBlur: _react.PropTypes.func,
+	    onOpen: _react.PropTypes.func,
 	    closeOnBlur: _react.PropTypes.bool,
 	    closeTimeoutMS: _react.PropTypes.number,
 	    children: _react.PropTypes.any,
-	    maintainFocus: _react.PropTypes.bool
+	    maintainFocus: _react.PropTypes.bool,
+	    elementToFocus: _react.PropTypes.string
 	  },
 	
 	  getInitialState: function getInitialState() {
@@ -257,7 +261,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  componentDidUpdate: function componentDidUpdate() {
 	    if (this.focusAfterRender) {
-	      this.focusContent();
+	      if (this.props.elementToFocus) {
+	        this.focusSelector(this.props.elementToFocus);
+	      } else {
+	        this.focusContent();
+	      }
 	      this.setFocusAfterRender(false);
 	    }
 	  },
@@ -268,6 +276,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  focusContent: function focusContent() {
 	    this.refs.content.focus();
+	  },
+	
+	  focusSelector: function focusSelector(querySelectorToUse) {
+	    var el = document.querySelectorAll(querySelectorToUse);
+	    var element = el.length ? el[0] : el;
+	    element.focus();
 	  },
 	
 	  handleOverlayClick: function handleOverlayClick(e) {
@@ -303,6 +317,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    _helpersFocusManager2['default'].markForFocusLater();
 	    this.setState({ isOpen: true }, function () {
+	      if (_this.props.onOpen) {
+	        _this.props.onOpen();
+	      }
 	      _this.setState({ afterOpen: true });
 	    });
 	  },
