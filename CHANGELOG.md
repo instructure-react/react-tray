@@ -1,3 +1,10 @@
+v2.0.0 - Wed, 13 Jul 2016 14:42:45 GMT
+--------------------------------------
+
+- [f3b4731](../../commit/f3b4731) [changed] Move elementToFocus prop to getElementToFocus (#9)
+- [7a316ff](../../commit/7a316ff) [added] Prop for adding aria-hidden to application element (#8)
+
+
 v1.1.0 - Mon, 11 Jul 2016 22:24:30 GMT
 --------------------------------------
 

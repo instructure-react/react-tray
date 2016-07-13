@@ -82,6 +82,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _TrayPortal2 = _interopRequireDefault(_TrayPortal);
 	
+	var _helpersCustomPropTypes = __webpack_require__(9);
+	
 	var renderSubtreeIntoContainer = _reactDom2['default'].unstable_renderSubtreeIntoContainer;
 	
 	exports['default'] = _react2['default'].createClass({
@@ -94,7 +96,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    closeTimeoutMS: _react2['default'].PropTypes.number,
 	    closeOnBlur: _react2['default'].PropTypes.bool,
 	    maintainFocus: _react2['default'].PropTypes.bool,
-	    elementToFocus: _react2['default'].PropTypes.string
+	    getElementToFocus: _helpersCustomPropTypes.a11yFunction,
+	    getAriaHideElement: _helpersCustomPropTypes.a11yFunction
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
@@ -233,7 +236,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    closeTimeoutMS: _react.PropTypes.number,
 	    children: _react.PropTypes.any,
 	    maintainFocus: _react.PropTypes.bool,
-	    elementToFocus: _react.PropTypes.string
+	    getElementToFocus: _react.PropTypes.func,
+	    getAriaHideElement: _react.PropTypes.func
 	  },
 	
 	  getInitialState: function getInitialState() {
@@ -261,8 +265,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  componentDidUpdate: function componentDidUpdate() {
 	    if (this.focusAfterRender) {
-	      if (this.props.elementToFocus) {
-	        this.focusSelector(this.props.elementToFocus);
+	      if (this.props.getElementToFocus) {
+	        this.props.getElementToFocus().focus();
 	      } else {
 	        this.focusContent();
 	      }
@@ -278,10 +282,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.refs.content.focus();
 	  },
 	
-	  focusSelector: function focusSelector(querySelectorToUse) {
-	    var el = document.querySelectorAll(querySelectorToUse);
-	    var element = el.length ? el[0] : el;
-	    element.focus();
+	  toggleAriaHidden: function toggleAriaHidden(element) {
+	    if (!element.getAttribute('aria-hidden')) {
+	      element.setAttribute('aria-hidden', true);
+	    } else {
+	      element.removeAttribute('aria-hidden');
+	    }
 	  },
 	
 	  handleOverlayClick: function handleOverlayClick(e) {
@@ -320,6 +326,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (_this.props.onOpen) {
 	        _this.props.onOpen();
 	      }
+	      if (_this.props.getAriaHideElement) {
+	        _this.toggleAriaHidden(_this.props.getAriaHideElement());
+	      }
 	      _this.setState({ afterOpen: true });
 	    });
 	  },
@@ -329,6 +338,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.closeWithTimeout();
 	    } else {
 	      this.closeWithoutTimeout();
+	    }
+	    if (this.props.getAriaHideElement) {
+	      this.toggleAriaHidden(this.props.getAriaHideElement());
 	    }
 	  },
 	
@@ -548,6 +560,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports['default'] = findTabbableDescendants;
 	module.exports = exports['default'];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	// Adapted from https://github.com/react-bootstrap/react-prop-types/blob/master/src/isRequiredForA11y.js
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.a11yFunction = a11yFunction;
+	
+	function a11yFunction(props, propName, componentName) {
+	  if (!props[propName] || typeof props[propName] !== 'function') {
+	    return new Error('The prop \'' + propName + '\' is required to make \'' + componentName + '\' fully accessible. ' + 'This will greatly improve the experience for users of assistive technologies. ' + 'You should provide a function that returns a DOM node.');
+	  }
+	}
 
 /***/ }
 /******/ ])
