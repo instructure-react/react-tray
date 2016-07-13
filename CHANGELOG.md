@@ -1,3 +1,9 @@
+v2.0.1 - Wed, 13 Jul 2016 22:55:21 GMT
+--------------------------------------
+
+- [36e3e55](../../commit/36e3e55) [fixed] Split toggleAriaHidden internal method to two methods
+
+
 v2.0.0 - Wed, 13 Jul 2016 14:42:45 GMT
 --------------------------------------
 
