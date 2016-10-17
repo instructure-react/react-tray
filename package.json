@@ -33,7 +33,7 @@
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
-    "rackt-cli": "^0.6.1",
+    "rackt-cli": "^0.7.0",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
     "react-dom": "^0.14.0"
