@@ -1,7 +1,7 @@
 v2.0.2 - Mon, 17 Oct 2016 15:55:11 GMT
 --------------------------------------
-
-- 
+This commit mostly addresses the `dist/` versions for use in AMD builds.  They are now named properly fixing the issue with https://github.com/instructure-react/react-tray/pull/10
+- [c0a6782](../../commit/c0a6782) Updated rackt-cli build/release tooling version
 
 
 v2.0.1 - Wed, 13 Jul 2016 22:55:21 GMT
