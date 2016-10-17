@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"), require("ReactDOM"));
+		module.exports = factory(require("react"), require("react-dom"));
 	else if(typeof define === 'function' && define.amd)
-		define(["React", "ReactDOM"], factory);
+		define(["react", "react-dom"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactTray"] = factory(require("React"), require("ReactDOM"));
+		exports["ReactTray"] = factory(require("react"), require("react-dom"));
 	else
 		root["ReactTray"] = factory(root["React"], root["ReactDOM"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
@@ -282,12 +282,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.refs.content.focus();
 	  },
 	
-	  toggleAriaHidden: function toggleAriaHidden(element) {
-	    if (!element.getAttribute('aria-hidden')) {
-	      element.setAttribute('aria-hidden', true);
-	    } else {
-	      element.removeAttribute('aria-hidden');
-	    }
+	  applyAriaHidden: function applyAriaHidden(element) {
+	    element.setAttribute('aria-hidden', true);
+	  },
+	
+	  removeAriaHidden: function removeAriaHidden(element) {
+	    element.removeAttribute('aria-hidden');
 	  },
 	
 	  handleOverlayClick: function handleOverlayClick(e) {
@@ -327,7 +327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.props.onOpen();
 	      }
 	      if (_this.props.getAriaHideElement) {
-	        _this.toggleAriaHidden(_this.props.getAriaHideElement());
+	        _this.applyAriaHidden(_this.props.getAriaHideElement());
 	      }
 	      _this.setState({ afterOpen: true });
 	    });
@@ -340,7 +340,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.closeWithoutTimeout();
 	    }
 	    if (this.props.getAriaHideElement) {
-	      this.toggleAriaHidden(this.props.getAriaHideElement());
+	      this.removeAriaHidden(this.props.getAriaHideElement());
 	    }
 	  },
 	
