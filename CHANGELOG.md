@@ -1,3 +1,9 @@
+v2.0.3 - Tue, 25 Oct 2016 20:11:21 GMT
+--------------------------------------
+
+- 
+
+
 v2.0.2 - Mon, 17 Oct 2016 15:55:11 GMT
 --------------------------------------
 This commit mostly addresses the `dist/` versions for use in AMD builds.  They are now named properly fixing the issue with https://github.com/instructure-react/react-tray/pull/10
